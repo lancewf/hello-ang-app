@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BillType } from '../shared/interfaces';
-import { billTypes } from '../data'
+import { BillType } from '../../shared/interfaces';
+import { billTypes } from '../../data'
 
 @Component({
   selector: 'app-search-purchases',
