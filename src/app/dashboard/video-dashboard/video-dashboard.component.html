@@ -1,0 +1,8 @@
+<p>
+  video-dashboard works!
+</p>
+
+<app-video-list (select)="selectedVideo = $event" [list]="selectedVideos"></app-video-list>
+
+<app-video-player [selectedVideo]="selectedVideo"></app-video-player>
+<app-stat-filters [list]="videoList" (selectedVideos)="selectedVideos = $event" ><app-stat-filters>
