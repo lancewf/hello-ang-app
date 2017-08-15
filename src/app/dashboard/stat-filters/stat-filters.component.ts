@@ -14,7 +14,7 @@ export class StatFiltersComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
+    this.selectedVideos.emit(this.list);
   }
 
   filterVideos() {
