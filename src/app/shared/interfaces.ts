@@ -3,6 +3,13 @@ export interface BillType {
   id:number;
 }
 
+export interface Purchase {
+  storeName: string;
+  cost: number;
+  billTypeId: number;
+  notes: string;
+}
+
 export interface ViewDetail {
   age: number;
   region: string; 

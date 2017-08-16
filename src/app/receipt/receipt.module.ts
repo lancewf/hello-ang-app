@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SearchPurchasesComponent } from './search-purchases/search-purchases.component'
 import { AddReceiptComponent } from './add-receipt/add-receipt.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import 'hammerjs';
 import {
@@ -49,6 +50,7 @@ export const routes: Routes = [
   imports: [
     CommonModule, 
     RouterModule.forChild(routes),
+    ReactiveFormsModule,
     MdAutocompleteModule,
     MdButtonModule,
     MdButtonToggleModule,

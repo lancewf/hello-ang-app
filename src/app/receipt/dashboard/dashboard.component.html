@@ -1,6 +1,6 @@
 <md-tab-group>
     <md-tab label="Add Receipt">
-      <add-receipt></add-receipt>
+      <add-receipt [billTypes]="billTypes"></add-receipt>
     </md-tab>
     <md-tab label="Overview">
         <p>Allowance</p>
@@ -8,7 +8,7 @@
         <p>Last Month</p>
     </md-tab>
     <md-tab label="Search">
-        <app-search-purchases></app-search-purchases>
+        <app-search-purchases [billTypes]="billTypes"></app-search-purchases>
     </md-tab>
     <md-tab label="Review Statement">
         <p>Upload bankstatement ...</p>
