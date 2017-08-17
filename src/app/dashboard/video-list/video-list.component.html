@@ -1,9 +1,5 @@
-<p>
-  video-list works!
-</p>
-
 <ul>
-   <li *ngFor="let video of list">
+   <li *ngFor="let video of list | async">
     <button (click)="selectVideo(video)"> {{video.title}} </button>
    </li>
 </ul>

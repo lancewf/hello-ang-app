@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { data } from './../data';
 import { Video } from '../../shared/interfaces';
-
+import { Http } from '@angular/http';
+import { VideoLoaderService } from '../services/video-loader.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-video-dashboard',
@@ -10,13 +11,15 @@ import { Video } from '../../shared/interfaces';
 })
 export class VideoDashboardComponent implements OnInit {
 
-  videoList = data;
+  videoList: Observable<Video[]>;
   selectedVideo: Video;
   selectedVideos: Video[];
 
-  constructor() { }
+  constructor(private http:Http, 
+    private videoLoaderService:VideoLoaderService) { }
 
   ngOnInit() {
+    this.videoList = this.videoLoaderService.loadVideos();
   }
 
 }

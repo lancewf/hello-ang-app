@@ -39,7 +39,11 @@ import {
   MdTooltipModule
 } from '@angular/material';
 
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { BillTypeService } from './services/bill-type.service';
+import { SplitReceiptComponent } from './split-receipt/split-receipt.component';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent , }
@@ -49,6 +53,8 @@ export const routes: Routes = [
   imports: [
     CommonModule, 
     RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
     MdAutocompleteModule,
     MdButtonModule,
     MdButtonToggleModule,
@@ -81,6 +87,7 @@ export const routes: Routes = [
     MdToolbarModule,
     MdTooltipModule
   ],
-  declarations: [SearchPurchasesComponent, AddReceiptComponent, DashboardComponent]
+  providers: [BillTypeService],
+  declarations: [SearchPurchasesComponent, AddReceiptComponent, DashboardComponent, SplitReceiptComponent]
 })
 export class ReceiptModule { }

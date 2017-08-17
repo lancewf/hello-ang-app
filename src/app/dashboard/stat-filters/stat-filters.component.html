@@ -1,3 +1,14 @@
-<p>
-  stat-filters works!
-</p>
+<form [formGroup]="statFiltersFormGroup" (ngSubmit)="filterVideos()">
+    <label for="search">Search</label>
+    <input id="search" type="text" formControlName="search">
+
+    <label for="startDate">Start Date</label>
+    <input id="startDate" type="date" formControlName="startDate">
+
+    <button>Search</button>
+</form>
+
+
+<div *ngIf=filterdVideos>
+  <pre>{{filterdVideos | json}}</pre>
+</div>

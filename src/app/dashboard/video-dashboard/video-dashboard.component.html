@@ -1,3 +1,5 @@
 <app-video-list (select)="selectedVideo = $event" [list]="videoList"></app-video-list>
+
 <app-video-player [selectedVideo]="selectedVideo"></app-video-player>
+
 <app-stat-filters [list]="videoList" (selectedVideos)="selectedVideos = $event" ><app-stat-filters>

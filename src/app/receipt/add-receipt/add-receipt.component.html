@@ -1,46 +1,68 @@
 <div class="add-form">
-  <form id="add-form" >
-      <table class="example-full-width" cellspacing="0" class="controls1">
-        <tr><td>
-            <md-input-container>
-              <input mdInput placeholder="Store Name" name="storename">
-            </md-input-container>
-          </td></tr>
-
-          <tr><td>
-            <md-input-container>
-              <input mdInput placeholder="Cost" name="cost" type="number" step="0.01">
-            </md-input-container>
-          </td></tr>
-          <tr><td>
-            <md-input-container>
-                <input mdInput id="date" type="date">
-            </md-input-container>
-          </td></tr>
-          <tr><td>
-            <md-input-container>
-              <input mdInput placeholder="Bill Type" name="billType">
-            </md-input-container>
-          </td></tr>
-          <tr><td>
-          <md-select placeholder="Favorite food">
-              <md-option *ngFor="let food of foods" [value]="food">
-                {{ food }}
-              </md-option>
-            </md-select>
-          </td></tr>
-          <tr><td>
-            <md-input-container class="md-block">
-                <label>Notes</label>
-                <textarea mdInput ng-model="user.biography" md-maxlength="150" rows="3" md-select-on-focus></textarea>
-              </md-input-container>
-          </td></tr>
-      </table>
-      <div class="buttons">
-        <span>
-          <button id="save-button" type="submit">SAVE</button>
-          <button id="cancel-button">CLOSE</button>
-        </span>
+  <h1>Add Purchase</h1>
+  <form #addReceiptForm="ngForm" (ngSubmit)="onSubmit()">
+    <button>Split</button>
+      <div class="form-group">
+        <md-input-container>
+          <input mdInput 
+            placeholder="Store Name" 
+            [formControl]="myControl" 
+            type="text" 
+            required
+            class="form-control" 
+            id="storename" 
+            name="storename"
+            [(ngModel)]="model.storeName"
+            [mdAutocomplete]="auto">
+        </md-input-container>
+        <md-autocomplete #auto="mdAutocomplete">
+            <md-option *ngFor="let store of filteredStores | async" [value]="store">
+               {{ store }}
+            </md-option>
+         </md-autocomplete>
       </div>
+      <div class="form-group">
+        <md-input-container>
+          <input mdInput 
+            placeholder="Cost" 
+            class="form-control"
+            name="cost" 
+            id="cost" 
+            type="number" 
+            step="0.01"
+            required
+            [(ngModel)]="model.cost">
+        </md-input-container>
+      </div>
+
+      <div class="form-group">
+          <md-input-container>
+            <input mdInput 
+              id="date" 
+              required 
+              placeholder="Date" 
+              class="form-control" 
+              name="date" 
+              [(ngModel)]="model.date"
+              #date="ngModel"
+              type="date">
+          </md-input-container>
+      </div>
+
+      <div class="form-group">
+        <md-select required [(ngModel)]="model.billType" placeholder="Bill Types" name="billType" #billType="ngModel">
+            <md-option *ngFor="let billType of billTypes | async" [value]="billType">
+              {{ billType.name }}
+            </md-option>
+        </md-select>
+      </div>
+
+      <div class="form-group">
+        <md-input-container class="md-block">
+            <label>Notes</label>
+            <textarea mdInput id="notes" md-maxlength="150" rows="3" md-select-on-focus></textarea>
+        </md-input-container>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!addReceiptForm.form.valid">Submit</button>
     </form>
 </div>

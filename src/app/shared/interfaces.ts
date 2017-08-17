@@ -1,6 +1,14 @@
 export interface BillType {
+  key:number;
   name:string;
-  id:number;
+  description: string;
+}
+
+export interface Purchase {
+  storeName: string;
+  cost: number;
+  billTypeId: number;
+  notes: string;
 }
 
 export interface ViewDetail {

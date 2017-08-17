@@ -1,6 +1,9 @@
 <md-tab-group>
+    <md-tab label="Split Receipt">
+        <app-split-receipt></app-split-receipt>
+    </md-tab>
     <md-tab label="Add Receipt">
-      <add-receipt></add-receipt>
+      <add-receipt [billTypes]=billTypes [stores]=stores></add-receipt>
     </md-tab>
     <md-tab label="Overview">
         <p>Allowance</p>

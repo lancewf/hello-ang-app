@@ -1,6 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Video } from '../../shared/interfaces';
+import { Observable } from 'rxjs/Observable';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 
+interface StatFilter{
+  search: string;
+  startDate: Date;
+}
 @Component({
   selector: 'app-stat-filters',
   templateUrl: './stat-filters.component.html',
@@ -8,17 +16,33 @@ import { Video } from '../../shared/interfaces';
 })
 export class StatFiltersComponent implements OnInit {
 
-  @Input() list: Video[];
+  @Input() list: Observable<Video[]>;
   @Output() selectedVideos = new EventEmitter<Video[]>();
+  statFiltersFormGroup: FormGroup;
+  filterdVideos:Video[];
 
-  constructor() { }
+  constructor(fb: FormBuilder) {
+    this.statFiltersFormGroup = fb.group({
+      search: ['', Validators.required],
+      startDate: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
-    this.selectedVideos.emit(this.list);
+
   }
 
   filterVideos() {
-    this.selectedVideos.emit(this.list.filter( (video:Video) => video));
+    let statFilter: StatFilter = this.statFiltersFormGroup.value;
+    console.info(statFilter);
+
+    this.list.subscribe( (videos:Video[]) =>{
+      this.filterdVideos = videos.filter( video => video.title.indexOf(statFilter.search) > -1  &&
+        video.viewDetails.some(detail => detail.date >= statFilter.startDate));
+
+      console.info(this.filterdVideos.length);
+      this.selectedVideos.emit(this.filterdVideos);
+    });
   }
 
 }
